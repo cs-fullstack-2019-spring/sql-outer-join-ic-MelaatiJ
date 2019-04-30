@@ -1,35 +1,42 @@
-CREATE TABLE IF NOT EXISTS teachers (
-                                           teacher_id serial PRIMARY KEY,
-                                           teacher_name VARCHAR (255) NOT NULL
-);
+-- ## Exercise 1:
+-- Create a Join that lists all Students and their Teachersstudents
 
-CREATE TABLE IF NOT EXISTS students (
-                                         student_id serial PRIMARY KEY,
-                                         student_name VARCHAR (255),
-                                         teacher_id INTEGER
-);
 
-INSERT INTO teachers (teacher_name)
-VALUES
-('Mr. Brasfield'),
-('Mr. Sensing'),
-('Ms. Hampton'),
-('Ms. Hendricks'),
-('Ms. Bruce', NULL),
-('Mr. Bruce');
+select students.student_name, teachers.teacher_name
+from students
+left join teachers
+on teachers.teacher_id=students.teacher_id;
 
-INSERT INTO students (student_name, teacher_id)
-VALUES
-('Sammy',1),
-('Jimmy',2),
-('Jane',2),
-('Etsuko',3),
-('Pete',4),
-('Slagg',3),
-('Myiah',4),
-('Jung',4),
-('Blaine',1)
-('Biff',NULL;
-('Buffy',NULL,
-('Mikey',NULL);
+
+-- Create a Join that lists ONLY Students assigned to a Teacher
+
+
+select students.student_name, teachers.teacher_name
+from students
+left join teachers
+on students.teacher_id=teachers.teacher_id
+where students.teacher_id notnull ;
+
+--
+-- ### Exercise 3:
+-- Create a Join that lists all Teachers and the Students
+
+select teachers.teacher_name, students.student_name
+from students
+right join teachers
+on students.teacher_id=teachers.teacher_id;
+
+
+
+-- ### Exercise 4:
+-- Create a Join that lists ONLY Teachers that have Students
+
+select teachers.teacher_name, students.student_name
+from teachers
+right join students
+on students.teacher_id=teachers.teacher_id
+where teachers.teacher_id notnull;
+
+
+
 
